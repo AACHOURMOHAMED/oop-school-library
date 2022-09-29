@@ -1,73 +1,43 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
-
-# Project Name
-
-> Description the project.
+# oop-school-library
 
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
-
-## Live Demo (if available)
-
-[Live Demo Link](https://livedemo.com)
-
+- Ruby
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+### 🛠 Installation & Set Up
 
-### Setup
+If you dont have Ruby installed on your computer, you can download it from [here](https://www.ruby-lang.org/en/downloads/).
 
-### Install
+Ones you have the files on your machine, you can run the app by running the following command in your terminal:
 
-### Usage
+```bash
+ruby main.rb
+```
 
-### Run tests
+## Author
 
-### Deployment
+👤 **MOHAMED AACHOUR**
 
-
-
-## Authors
-
-👤 **Author1**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- Github [@AACHOURMOHAMED]()
+- LinkedIn [@AACHOURMOHAMED]()
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
+Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page]().
 
 ## Show your support
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
-
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](
+    ./LICENSE
+) licensed.
