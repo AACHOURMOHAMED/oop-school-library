@@ -1,6 +1,6 @@
-require_relative 'Person'
+require_relative 'person'
 
-class Teacher
+class teacher
   def initialize(age, name: 'Unkown', parent_permission: true)
     super(@age, @name, @parent_permission)
     @specialization = specialization

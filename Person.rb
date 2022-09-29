@@ -1,4 +1,4 @@
-class Person
+class person
     attr_accessor :id, :name, :age
 
     def initialize(id, name: 'Unknown', age, parent_permission: true)
