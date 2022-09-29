@@ -3,8 +3,8 @@ class Person
 
   def initialize(id, age, name: 'Unkown', parent_permission: true)
     @id = id
-    @name = name
     @age = age
+    @name = name
     @parent_permission = parent_permission
   end
   # getters for @id @name @age
