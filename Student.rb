@@ -1,4 +1,4 @@
-require_relative 'person'
+require 'person'
 
 class Student < Person
   # constructor extends parnet's constructor by adding @classroom and a parameter for it
