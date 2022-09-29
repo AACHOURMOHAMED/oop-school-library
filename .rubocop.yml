@@ -19,6 +19,9 @@ Metrics/BlockLength:
   IgnoredMethods: ['describe']
   Max: 30
 
+Naming/FileName:
+  ExpectMatchingDefinition: true
+  CheckDefinitionPathHierarchy: false
 
 Style/Documentation:
   Enabled: false
