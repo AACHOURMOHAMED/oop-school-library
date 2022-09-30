@@ -1,5 +1,3 @@
-
-
 class ClassRoom
   attr_accessor :label
 
