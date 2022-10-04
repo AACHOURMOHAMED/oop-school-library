@@ -135,13 +135,22 @@ class App
     else
       puts 'Cannot create rental because there are no books or people in the app' end
   end
-
+   # load books
+   
+  
   def load_data
+    path = 'data/books.json'
+    if file_exist?(path)
     books = JSON.parse(File.read('data/books.json'))
     books.each do |book|
       @books << Book.new(book['title'], book['author'])
     end
+  else
+      puts 'books.json file does not exist'
+  end
     # load people
+    path = 'data/people.json'
+    if file_exist?(path)
     people = JSON.parse(File.read('data/people.json'))
     people.each do |person|
       if person['type'] == 'Student'
@@ -149,40 +158,36 @@ class App
       elsif person['type'] == 'Teacher'
         @people << Teacher.new(person['age'], person['specialization'], person['name'])
       end
+     end
+    else
+      puts 'people.json file does not exist'
     end
-    # load rentals
-    # check if rentals.json file exist
-    path = 'data/rentals.json'
 
-    if file_exist?(path) # if file exist, load rentals
-    rentals = JSON.parse(File.read('data/rentals.json'))
+    # load rentals
+    path = 'data/rentals.json'
+    if file_exist?(path)
+    rentals = JSON.parse(File.read(path))
     rentals.each do |rental|
-      @rentals << Rental.new(rental['date'], @books[rental['book_index']].to_i, @people[rental['person_index']].to_i)
+      @rentals << Rental.new(rental['date'], @books[rental['book']], @people[rental['person']])
     end
     else
       puts 'rentals.json file does not exist'
-      
     end
   end
 
 
 
-  # create save data method
-  def save_data
-    # create a hash to store rentals, books, people, classrooms 
+  
+  def save_data 
     books = @books.map { |book| { title: book.title, author: book.author } }
-    
-    # create a file to store data
     File.open('data/books.json', 'w') do |file|
       file.write(JSON.pretty_generate(books))
     end 
-    rentals = @rentals.map { |rental| { date: rental.date, book: { title: rental.book.title, author: rental.book.author }  , person: { name: rental.person.name , age: rental.person.age } } } 
-      
+    rentals = @rentals.map { |rental| { date: rental.date, book: @books.find_index(rental.book)  , person: @people.find_index(rental.person) } }
     File.open('data/rentals.json', 'w') do |file|
         file.write(JSON.pretty_generate(rentals))
     end
-    people = @people.map { |person| { name: person.name, age: person.age} }
-       
+    people = @people.map { |person| { name: person.name, age: person.age , type:person.class} } 
     File.open('data/people.json', 'w') do |file|
        file.write(JSON.pretty_generate(people)) 
     end
