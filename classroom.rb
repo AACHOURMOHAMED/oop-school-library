@@ -2,12 +2,11 @@ class ClassRoom
   attr_accessor :label
 
   def initialize(label)
-    super()
     @label = label
+    @students = []
   end
 
   def add_student(student)
-    @students = []
     @students << student
     student.classroom = self
   end

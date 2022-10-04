@@ -1,10 +1,11 @@
 require_relative 'nameable'
 
 class Person < NameAble
-  attr_reader :name, :age
+  attr_reader :name, :age, :id
 
-  def initialize(age, name)
+  def initialize(age, name = 'Unknown', parent_permission: true) # rubocop:disable Lint/UnusedMethodArgument
     super()
+    @id = rand(100..999)
     @age = age
     @name = name
     @rentals = []
@@ -14,8 +15,7 @@ class Person < NameAble
     @name
   end
 
-  def add_rental(book, date)
-    rental = Rental.new(date, book, self)
-    @rentals.push(rental)
+  def add_rental(rental)
+    @rentals << rental
   end
 end
