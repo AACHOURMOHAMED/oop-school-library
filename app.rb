@@ -132,16 +132,14 @@ class App
       puts 'Cannot create rental because there are no books or people in the app' end
   end
 
-  # create load data method
   def load_data
-    # load data from json file
-    data = JSON.parse(File.read('rentals.json'))
-    # load books
-    data['books'].each do |book|
+    books = JSON.parse(File.read('data/books.json'))
+    books.each do |book|
       @books << Book.new(book['title'], book['author'])
     end
     # load people
-    data['people'].each do |person|
+    people = JSON.parse(File.read('data/people.json'))
+    people.each do |person|
       if person['type'] == 'Student'
         @people << Student.new(person['age'], person['classroom'], person['name'], parent_permission: person['parent_permission'])
       elsif person['type'] == 'Teacher'
@@ -149,8 +147,9 @@ class App
       end
     end
     # load rentals
-    data['rentals'].each do |rental|
-      @rentals << Rental.new(rental['date'], @books[rental['book_index']], @people[rental['person_index']])
+    rentals = JSON.parse(File.read('data/rentals.json'))
+    rentals.each do |rental|
+      @rentals << Rental.new(rental['date'], @books[rental['book_index']].to_i, @people[rental['person_index']].to_i)
     end
   end
 
@@ -159,15 +158,23 @@ class App
   # create save data method
   def save_data
     # create a hash to store rentals, books, people, classrooms 
-    data = {
-      rentals: @rentals.map { |rental| { date: rental.date, book: rental.book, person: rental.person } },
-      books: @books.map { |book| { title: book.title, author: book.author } },
-      people: @people.map { |person| { name: person.name, age: person.age, parent_permission: person.parent_permission, classroom: person.classroom } },
-    }
+    books = @books.map { |book| { title: book.title, author: book.author } }
+    
     # create a file to store data
-    File.open('rentals.json', 'w') do |file|
-      file.write(JSON.pretty_generate(data))
+    File.open('data/books.json', 'w') do |file|
+      file.write(JSON.pretty_generate(books))
+    end 
+    rentals = @rentals.map { |rental| { date: rental.date, book: rental.book, person: rental.person } }
+      
+    File.open('data/rentals.json', 'w') do |file|
+        file.write(JSON.pretty_generate(rentals))
     end
+    people = @people.map { |person| { name: person.name, age: person.age, parent_permission: person.parent_permission, classroom: person.classroom } }
+       
+    File.open('data/people.json', 'w') do |file|
+       file.write(JSON.pretty_generate(people)) 
+    end
+
   end
 
   def list_rentals_by_person_id

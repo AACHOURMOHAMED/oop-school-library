@@ -3,7 +3,7 @@ require_relative 'nameable'
 class Person < NameAble
   attr_reader :name, :age, :id
 
-  def initialize(age, name = 'Unknown', parent_permission: true) # rubocop:disable Lint/UnusedMethodArgument
+  def initialize(age, name = 'Unknown', parent_permission) # rubocop:disable Lint/UnusedMethodArgument
     super()
     @id = rand(100..999)
     @age = age

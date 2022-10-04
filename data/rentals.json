@@ -1,22 +1,7 @@
-{
-  "rentals": [
-
-  ],
-  "books": [
-    {
-      "title": "dsf",
-      "author": "sdf"
-    },
-    {
-      "title": "sdf",
-      "author": "sdfsdfsd"
-    },
-    {
-      "title": "fdsf",
-      "author": "sdfs"
-    }
-  ],
-  "people": [
-
-  ]
-}
+[
+  {
+    "date": "2222/22/22",
+    "book": "#<Book:0x00007fe2dd5279a8>",
+    "person": "#<Student:0x00007fe2dd515190>"
+  }
+]
