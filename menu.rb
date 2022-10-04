@@ -5,6 +5,8 @@ require_relative 'app'
 APP = App.new
 
 class Menu
+    # call load_data method to load data from json file
+    APP.load_data
   def menu_message
     puts '____________________________________________________________'
     puts 'Please choose an option by entering a number:'
@@ -35,6 +37,8 @@ class Menu
       APP.list_rentals_by_person_id
     when 7
       puts 'Thank you for using this app!'
+      # save all data to json file
+        APP.save_data
       exit
     else puts 'Invalid option' end
     display_menu

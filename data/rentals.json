@@ -1,0 +1,22 @@
+{
+  "rentals": [
+
+  ],
+  "books": [
+    {
+      "title": "dsf",
+      "author": "sdf"
+    },
+    {
+      "title": "sdf",
+      "author": "sdfsdfsd"
+    },
+    {
+      "title": "fdsf",
+      "author": "sdfs"
+    }
+  ],
+  "people": [
+
+  ]
+}

@@ -3,6 +3,8 @@ require_relative 'teachers'
 require_relative 'book'
 require_relative 'rental'
 require_relative 'classroom'
+# import json file
+require 'json'
 
 class App
   attr_accessor :rentals, :books, :people, :classrooms
@@ -128,6 +130,44 @@ class App
       puts 'Rental created successfully'
     else
       puts 'Cannot create rental because there are no books or people in the app' end
+  end
+
+  # create load data method
+  def load_data
+    # load data from json file
+    data = JSON.parse(File.read('rentals.json'))
+    # load books
+    data['books'].each do |book|
+      @books << Book.new(book['title'], book['author'])
+    end
+    # load people
+    data['people'].each do |person|
+      if person['type'] == 'Student'
+        @people << Student.new(person['age'], person['classroom'], person['name'], parent_permission: person['parent_permission'])
+      elsif person['type'] == 'Teacher'
+        @people << Teacher.new(person['age'], person['specialization'], person['name'])
+      end
+    end
+    # load rentals
+    data['rentals'].each do |rental|
+      @rentals << Rental.new(rental['date'], @books[rental['book_index']], @people[rental['person_index']])
+    end
+  end
+
+
+
+  # create save data method
+  def save_data
+    # create a hash to store rentals, books, people, classrooms 
+    data = {
+      rentals: @rentals.map { |rental| { date: rental.date, book: rental.book, person: rental.person } },
+      books: @books.map { |book| { title: book.title, author: book.author } },
+      people: @people.map { |person| { name: person.name, age: person.age, parent_permission: person.parent_permission, classroom: person.classroom } },
+    }
+    # create a file to store data
+    File.open('rentals.json', 'w') do |file|
+      file.write(JSON.pretty_generate(data))
+    end
   end
 
   def list_rentals_by_person_id
