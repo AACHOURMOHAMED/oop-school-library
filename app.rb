@@ -16,6 +16,10 @@ class App
     @classrooms = []
   end
 
+  def file_exist?(filename)
+    File.exist? filename
+  end
+
   def list_books
     if @books.empty?
       puts 'No books found'
@@ -147,9 +151,17 @@ class App
       end
     end
     # load rentals
+    # check if rentals.json file exist
+    path = 'data/rentals.json'
+
+    if file_exist?(path) # if file exist, load rentals
     rentals = JSON.parse(File.read('data/rentals.json'))
     rentals.each do |rental|
       @rentals << Rental.new(rental['date'], @books[rental['book_index']].to_i, @people[rental['person_index']].to_i)
+    end
+    else
+      puts 'rentals.json file does not exist'
+      
     end
   end
 
@@ -164,12 +176,12 @@ class App
     File.open('data/books.json', 'w') do |file|
       file.write(JSON.pretty_generate(books))
     end 
-    rentals = @rentals.map { |rental| { date: rental.date, book: rental.book, person: rental.person } }
+    rentals = @rentals.map { |rental| { date: rental.date, book: { title: rental.book.title, author: rental.book.author }  , person: { name: rental.person.name , age: rental.person.age } } } 
       
     File.open('data/rentals.json', 'w') do |file|
         file.write(JSON.pretty_generate(rentals))
     end
-    people = @people.map { |person| { name: person.name, age: person.age, parent_permission: person.parent_permission, classroom: person.classroom } }
+    people = @people.map { |person| { name: person.name, age: person.age} }
        
     File.open('data/people.json', 'w') do |file|
        file.write(JSON.pretty_generate(people)) 

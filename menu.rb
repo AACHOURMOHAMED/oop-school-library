@@ -3,7 +3,7 @@ require_relative 'app'
 APP = App.new
 
 class Menu
-    APP.load_data
+  APP.load_data
   def menu_message
     puts '____________________________________________________________'
     puts 'Please choose an option by entering a number:'
@@ -34,7 +34,7 @@ class Menu
       APP.list_rentals_by_person_id
     when 7
       puts 'Thank you for using this app!'
-        APP.save_data
+      APP.save_data
       exit
     else puts 'Invalid option' end
     display_menu

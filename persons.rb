@@ -8,6 +8,7 @@ class Person < NameAble
     @id = rand(100..999)
     @age = age
     @name = name
+    @parent_permission = parent_permission
     @rentals = []
   end
 
