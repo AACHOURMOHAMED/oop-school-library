@@ -152,10 +152,11 @@ class App
     if file_exist?(path)
       people = JSON.parse(File.read('data/people.json'))
       people.each do |person|
-        if person['type'] == 'Student'
+        case person['type']
+        when 'Student'
           @people << Student.new(person['age'], person['classroom'], person['name'],
                                  parent_permission: person['parent_permission'])
-        elsif person['type'] == 'Teacher'
+        when 'Teacher'
           @people << Teacher.new(person['age'], person['specialization'], person['name'])
         end
       end
@@ -177,19 +178,13 @@ class App
 
   def save_data
     books = @books.map { |book| { title: book.title, author: book.author } }
-    File.open('data/books.json', 'w') do |file|
-      file.write(JSON.pretty_generate(books))
-    end
-    rentals = @rentals.map { |rental|
+    File.write('data/books.json', JSON.pretty_generate(books))
+    rentals = @rentals.map do |rental|
       { date: rental.date, book: @books.find_index(rental.book), person: @people.find_index(rental.person) }
-    }
-    File.open('data/rentals.json', 'w') do |file|
-      file.write(JSON.pretty_generate(rentals))
     end
+    File.write('data/rentals.json', JSON.pretty_generate(rentals))
     people = @people.map { |person| { name: person.name, age: person.age, type: person.class } }
-    File.open('data/people.json', 'w') do |file|
-      file.write(JSON.pretty_generate(people))
-    end
+    File.write('data/people.json', JSON.pretty_generate(people))
   end
 
   def list_rentals_by_person_id
