@@ -4,6 +4,9 @@ require_relative 'students'
 require_relative 'teachers'
 require_relative 'classroom'
 require_relative 'rental'
+require_relative 'capitalize_decorator'
+require_relative 'trimmer_decorator'
+
 
 describe Book do
   let(:book) { Book.new('The Great Gatsby', 'F. Scott Fitzgerald') }
@@ -95,6 +98,30 @@ describe Rental do
   describe '#new' do
     it 'creates a new rental' do
       expect(rental).to be_an_instance_of(Rental)
+    end
+  end
+end
+
+describe Person do
+  let(:person) {
+    Person.new(20, 'john doe')
+  }
+  let(:capitalized) {
+    CapitalizeDecorator.new(person).correct_name
+  }
+  let(:trimmed) {
+    TrimmerDecorator.new(person).correct_name
+  }
+
+  describe '#Capitalize' do
+    it 'Capitalize persons name' do
+      expect(capitalized).to eq("John doe")
+    end
+  end
+
+  describe '#Trimmed' do
+    it 'Trim persons name' do
+      expect(capitalized).to eq(capitalized[0..9])
     end
   end
 end
