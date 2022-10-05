@@ -7,7 +7,6 @@ require_relative 'rental'
 require_relative 'capitalize_decorator'
 require_relative 'trimmer_decorator'
 
-
 describe Book do
   let(:book) { Book.new('The Great Gatsby', 'F. Scott Fitzgerald') }
 
@@ -91,9 +90,9 @@ describe ClassRoom do
 end
 
 describe Rental do
-  let(:rental) {
+  let(:rental) do
     Rental.new('2021-21-12', Book.new('The Great Gatsby', 'F. Scott Fitzgerald'), Person.new(20, 'John Doe'))
-  }
+  end
 
   describe '#new' do
     it 'creates a new rental' do
@@ -103,19 +102,19 @@ describe Rental do
 end
 
 describe Person do
-  let(:person) {
+  let(:person) do
     Person.new(20, 'john doe')
-  }
-  let(:capitalized) {
+  end
+  let(:capitalized) do
     CapitalizeDecorator.new(person).correct_name
-  }
-  let(:trimmed) {
+  end
+  let(:trimmed) do
     TrimmerDecorator.new(person).correct_name
-  }
+  end
 
   describe '#Capitalize' do
     it 'Capitalize persons name' do
-      expect(capitalized).to eq("John doe")
+      expect(capitalized).to eq('John doe')
     end
   end
 
