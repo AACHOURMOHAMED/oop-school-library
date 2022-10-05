@@ -3,6 +3,8 @@ require_relative 'teachers'
 require_relative 'book'
 require_relative 'rental'
 require_relative 'classroom'
+# import json file
+require 'json'
 
 class App
   attr_accessor :rentals, :books, :people, :classrooms
@@ -12,6 +14,10 @@ class App
     @books = []
     @people = []
     @classrooms = []
+  end
+
+  def file_exist?(filename)
+    File.exist? filename
   end
 
   def list_books
@@ -129,6 +135,7 @@ class App
     else
       puts 'Cannot create rental because there are no books or people in the app' end
   end
+  # load books
 
   def list_rentals_by_person_id
     puts # empty line
