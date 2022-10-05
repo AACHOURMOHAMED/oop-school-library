@@ -1,7 +1,12 @@
 [
   {
-    "name": "34",
-    "age": 34,
+    "name": "DSF",
+    "age": 51,
+    "type": "Student"
+  },
+  {
+    "name": "SDF",
+    "age": 15,
     "type": "Teacher"
   }
 ]
