@@ -1,26 +1,19 @@
-# create menu.rb to dislay the menu and handle the user input
-
 require_relative 'app'
+require_relative 'preverse_data'
+require_relative 'menumessage'
+
+MENU = MenuMessage.new
 
 APP = App.new
 
-class Menu
-    # call load_data method to load data from json file
-    APP.load_data
-  def menu_message
-    puts '____________________________________________________________'
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-  end
+DATA = PreverseData.new
 
+class Menu
+  DATA.load_books
+  DATA.load_people
+  DATA.load_rentals
   def display_menu # rubocop:disable Metrics/CyclomaticComplexity
-    menu_message
+    MENU.menu_message
     option = gets.chomp.to_i
     case option
     when 1
@@ -36,9 +29,7 @@ class Menu
     when 6
       APP.list_rentals_by_person_id
     when 7
-      puts 'Thank you for using this app!'
-      # save all data to json file
-        APP.save_data
+      DATA.save_data
       exit
     else puts 'Invalid option' end
     display_menu
